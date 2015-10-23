@@ -126,13 +126,13 @@ def get_user_by_username(username):
 class JSONAPIException(Exception):
 
 	def __init__(self, title, resource_type, message, status_code, source):
-		Exception.__init__(self)
 		self.status_code = status_code
 		self.title = title
 		self.resource_type = resource_type
 		self.message = message
 		self.status_code = status_code
 		self.source = source
+		super(JSONAPIException, self).__init__(self.to_json())
 
 	def to_json(self):
 		error = dict(status=self.status_code, title=self.title, source=self.source, detail=self.message) 
@@ -141,15 +141,14 @@ class JSONAPIException(Exception):
 class RecordNotFound(JSONAPIException):
 
 	def __init__(self, resource_type, source):
-		super(RecordNotFound, self).__init__(self, resource_type=resource_type, source=source,
-			title="Resource Not Found",
+		super(RecordNotFound, self).__init__(title="Resource Not Found", resource_type=resource_type, 
 			message="Resource not found for %s. Please verify you specified a valid id." % (resource_type),
-			status_code=422)
+			status_code=422, source=source)
 
 class InsertFailed(JSONAPIException):
 
 	def __init__(self, resource_type, source):
-		super(InsertFailed, self).__init__(self, resource_type=resource_type, source=source, 
+		super(InsertFailed, self).__init__(resource_type=resource_type, source=source, 
 			title="Insert failed",
 			message="Could not insert %s. Please verify correctness of your request." % (resource_type),
 			status_code=422)
@@ -157,10 +156,11 @@ class InsertFailed(JSONAPIException):
 class UpdateFailed(JSONAPIException):
 
 	def __init__(self, resource_type, source):
-		super(UpdateFailed, self).__init__(self, resource_type=resource_type, source=source, 
+		super(UpdateFailed, self).__init__(resource_type=resource_type, source=source, 
 			title="Update failed",
 			message="Could not update %s. Please verify correctness of your request." % (resource_type),
 			status_code=422)
+
 
 class PicJSONAPI(object):
 
