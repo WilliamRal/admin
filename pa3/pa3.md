@@ -213,7 +213,7 @@ def pic_caption_post():
 	}
 	Updates the caption and sends a response of the format
 	{
-		"id": "picid",
+		"caption": "caption",
 		"status": 201
 	}
 	Or if an error occurs:
