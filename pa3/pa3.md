@@ -25,7 +25,7 @@ For parts 1 and 2, **jQuery is not allowed.** However, in part 3 (extra credit) 
 
 For parts 1 and 2, we will be allowing users to edit the caption on the photo. The first method will be using the server side method that you're already used to.
 
-Currently, when a user goes to `/pic?id=picid` it will display the image with the picid, previous and next buttons to move between photos within the album, the date and time last updated and the caption. In Project 2, you were responsible for having the ability to edit the picture capture on the `/pic?id=picid` page. Now, we'll be allowing any user that can view the page the ability to edit the caption in "real" time at the `/pic?id=picid` route. Your code should have looked similar to the following: 
+Currently, when a user goes to `/pic?id=picid` it will display the image with the picid, previous and next buttons to move between photos within the album and the caption. In Project 2, you were responsible for having the ability to edit the picture capture on the `/pic?id=picid` page. Now, we'll be allowing any user that can view the page the ability to edit the caption in "real" time at the `/pic?id=picid` route. Your code should have looked similar to the following: 
 ```
 <form name="input" action="{{ url_for('pic.pic_route') }}" method="post">
 	<input type="hidden" name="id" value={{ picid }} />
