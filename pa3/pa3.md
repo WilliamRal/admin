@@ -392,11 +392,12 @@ The following scenarios should be handled:
 	
 	```json
 	{
-		"error": "You did not provide an id and caption parameter.", // or "You did not provide an id parameter." or "You did not provide a username parameter."
+		"error": "You did not provide an id and username parameter.", // or "You did not provide an id parameter." or "You did not provide a username parameter."
 		"status": 404
 	}
 	```
-	
+Note that previous versions of the spec had an error message of "You did not provide an id and caption parameter." That will also be accepted.
+
 * If the JSON POST request provides an invalid picid, return the following and set the response HTTP status code to 422:
 
 	```json
