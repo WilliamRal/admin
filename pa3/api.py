@@ -87,6 +87,15 @@ def insert_comment(picid, message, username):
 															"pointer": "data/attributes/username"})
 	return commentid
 
+def update_caption(picid, caption):
+	query = "UPDATE Contain SET caption='%s' WHERE picid='%s'" % (caption, picid)
+	try:
+		application.update(query)
+	except Exception as e:
+		print e
+		raise UpdateFailed(resource_type='Pic', source={"pointer": "data/attributes/picid",
+														"pointer": "data/attributes/caption"})
+
 def get_comments_by_picid(picid):
 	query = "SELECT commentid, picid, message, username, date FROM Comment WHERE picid='%s'" % (picid)
 	results = execute(query)
@@ -145,6 +154,13 @@ class InsertFailed(JSONAPIException):
 			message="Could not insert %s. Please verify correctness of your request." % (resource_type),
 			status_code=422)
 
+class UpdateFailed(JSONAPIException):
+
+	def __init__(self, resource_type, source):
+		super(UpdateFailed, self).__init__(self, resource_type=resource_type, source=source, 
+			title="Update failed",
+			message="Could not update %s. Please verify correctness of your request." % (resource_type),
+			status_code=422)
 
 class PicJSONAPI(object):
 
@@ -217,6 +233,20 @@ def pics(picid):
 	pic = PicJSONAPI(pic, favorites, comments, contain)
 	data = pic.to_json()
 	return json.jsonify(**data)
+
+@api.route('/pics/<picid>', methods=['PATCH'])
+def patch_caption(picid):
+	try:
+		data = request.get_json(force=True)["data"]
+		caption = data["attributes"]["caption"]
+		update_caption(picid, caption)
+	except JSONAPIException as e:
+		response = json.jsonify(errors=[e.to_json()])
+		response.status_code = 422
+
+	response = json.jsonify(data=data)
+	response.status_code = 201
+	return response
 
 
 @api.route('/favorites/<int:id>')
