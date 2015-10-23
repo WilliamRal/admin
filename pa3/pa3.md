@@ -755,7 +755,7 @@ App.UsernameInputComponent = Ember.Component.extend({
       $('#usernameInputError #error').remove();
     })
     .catch(function(error) {
-      $('#usernameInputError').append('<div id="error">The username supplied does not exist.</div>');
+      $('#usernameInputError').append('<div id="error">Sorry, the username does not exist.</div>');
     });
     var parent = this.get('parentView');
     parent.set('username', username);
@@ -769,7 +769,7 @@ Next, we create our username validation service. It's job is very simple: look i
 
 Lastly, we have our username-input component. It's `focusOut` method is called when the user loses focus of the input element (for example, they select elsewhere or go to the next form input. When they focusOut, we want to get the username and call our validation service. If there is an error, we append the error. Our final step is setting the username variable for the parent component. Usually a parent component wouldn't have access to the child component's data unless the system implements an event bus or action loop, but we went ahead and bent the rules for this situation.
 
-Now that we have username validation taken care of, let's handle comment submission. We'll add the following functions to our app.js:
+Now that we have username validation taken care of, let's handle comment submission. Remember, we need to handle checking the username on comment submit also. We'll add the following functions to our app.js:
 ```
 // /static/app/app.js
 
@@ -777,18 +777,27 @@ App.PicController = Ember.Controller.extend({
 
   actions: {
     commentSubmit: function(username, message) {
-      var comment = this.store.createRecord('comment', {
-        message: message,
-        username: username,
-        date: moment().format("YYYY-MM-DDTHH:mm:ss"),
-      });
-      var picid = this.get('model').get('id');
-      var pic = this.store.findRecord('pic', picid)
-        .then(function (pic) {
-          var picurl = pic.get('picurl');
-          comment.set('pic', pic);
-          comment.save();
+      this.get('usernameValidator').validateUsername(username)
+      .then(function(username) {
+        $('#usernameInputError #error').remove();
+        var comment = this.store.createRecord('comment', {
+          message: message,
+          username: username,
+          date: moment().format("YYYY-MM-DDTHH:mm:ss"),
         });
+        var picid = this.get('model').get('id');
+        var pic = this.store.findRecord('pic', picid)
+          .then(function (pic) {
+            var picurl = pic.get('picurl');
+            comment.set('pic', pic);
+            comment.save();
+          });
+      })
+      .catch(function(error) {
+        console.log(error);
+        $('#usernameInputError').append('<div id="error">Your comment cannot be submitted as you did not provide a valid username.</div>');
+        return;
+      });
     }
   }
 });
