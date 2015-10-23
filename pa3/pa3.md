@@ -263,7 +263,7 @@ function makeCaptionPostRequest(picid, caption, cb) {
     'caption': caption
   };
 
-  qwest.post('/lcahwk/pa3/pic/caption', data, {
+  qwest.post('/secretkey/pa3/pic/caption', data, {
     dataType: 'json',
     responseType: 'json'
   }).then(function(xhr, resp) {
@@ -433,13 +433,15 @@ How favorites are displayed is a group decision. It can be as simple as a simple
 
 Once again, security of these routes is not pivotal. It is not your responsibility in this project to guarantee that the routes are accessed by authenticated users. For example, it is okay that any person can send a POST request with a username (even if that user does not have access to view the picture). However, if a user goes to  `/pic?id=picid` page and does not have permission to view the page, they should not be allowed to view it. If it is a public page, the user should be able to view the favorites, but they themselves not favorite the picture since they are not logged in. The same permission checks hold true as in project 2. You should also reject requests with invalid information (such as picid and username).
 
+**Your Javascript code for favorites should live in a file called `/static/js/favorites.js`.**
+
 ## Part 3: Here Comes the Framework (optional 10% extra credit)
 
 *Please note that this part of the project is optional. Groups who complete this part will gain extensive knowledge with a client-side framework, and as a bonus, up to 10% extra credit on the project.*
 
 After going through part 2, one can quickly realize the complexity involved with binding your DOM with one's data layer. For large-scale applications that have multiple components (and components more complex than just a simple input and text), the code can quickly become messy. Enter frontend (client-side) MVC frameworks whose aim is to provide a consistent way to interact with your server, provide a consistent source of truth data store and push those updates to all of the components that need the data. This also goes back the other way (from view component to server).
 
-In Part 3, we will use [Ember][http://emberjs.com/] to provide a unified way to address these problems. Before heading any further, it is suggested you read through Ember's documentation to understand some of the terminology and what is happening. While not necessary, reading through (Ember's guides)[http://guides.emberjs.com/v2.0.0/] may prove helpful (~2-3 hrs of reading), but most importantly understanding the (Core Concepts)[http://guides.emberjs.com/v2.0.0/getting-started/core-concepts/]. There are guides on templates, controllers, components, models, etc.
+In Part 3, we will use [Ember](http://emberjs.com/]) to provide a unified way to address these problems. Before heading any further, it is suggested you read through Ember's documentation to understand some of the terminology and what is happening. While not necessary, reading through [Ember's guides](http://guides.emberjs.com/v2.0.0/) may prove helpful (~2-3 hrs of reading), but most importantly understanding the [Core Concepts](http://guides.emberjs.com/v2.0.0/getting-started/core-concepts/). There are guides on templates, controllers, components, models, etc.
 
 Use of other frameworks is allowed for part 3, however this guide only covers Ember. If another framework is used, the url routes should still be the same. For a tutorial on completing part 3 with Angular to see how Ember and Angular differ, see [here](https://github.com/EECS485-Fall2015/admin/tree/master/pa3/angular.md). This README should be the final source of truth on what is expected for this project. Part 3 will be using Ember, a frontend Javascript MVC framework for single page web applications. We've chosen Ember instead of other frameworks due to its terminology being easier to understand, good documentation, and its widespread popularity. It will be your group's responsibility to read documentation to meet the project's requirements. The course staff has limited knowledge of Ember. That being said, feel free to contact Matt S via office hours or on Piazza if your group runs into issues with Ember on part 3. Remember, this class, especially this project, are not about learning the framework. It's about learning why the framework exists (what problems does it solve) and how does it solve them.
 
@@ -514,7 +516,7 @@ Ember.Application.initializer({
 });
 
 App.Router = Ember.Router.extend({
-  rootURL: '/lcahwk/pa3/live'
+  rootURL: '/secretkey/pa3/live'
 });
 ```
 Here we create an Ember application and attach it to the window object with the name App. This means we can refer to it at any point by using "App". You can even type it into your web browser's developer Javascript console to modify it or inspect it. The next thing we do is run the initializer. Whenever the Ember app is created, it will run this function. What we have specified here will play a role in allowing username validation. We have created an Ember "service" and injected it within our other parts of the codebase (controllers and routes). We've also taken our main data store (see below) and made it available to the username-validator service so that it can query the data store. After creating the Ember app, we set a configuration option on its router called the rootURL, which let's Ember know what page is the root page for our Ember application. 
@@ -831,7 +833,7 @@ As you can hopefully see, Ember provides a nice abstraction for many of the feat
 
 ## Deliverables
 Make sure that you have all of the following present to receive full credit:
-* Dynamic data binding for caption and favorites at the `/pic?id=picid` url
+* Dynamic data binding for caption and favorites at the `/pic?id=picid` url, with JS code located in the files `/static/js/caption.js` and `/static/js/favorites.js`, respectively.
 * API routes specified in part 2, including error handling
 * README.md with specification as to whether the extra credit was complete, your team's URLs and any other notes and how many late days have been used
 * Database loaded with given data (from projects 1 and 2), alongside the given SQL load data file for favorites and comments. Extra information should not be present in the database.
