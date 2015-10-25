@@ -840,4 +840,6 @@ Make sure that you have all of the following present to receive full credit:
 
 Your code should be hosted within the `/var/www/html/group##/pa3` sub-directory. **Commit your code to Github and do not modify your Github repository or server code after the due date. Doing so is considered an Honor Code violation.** Also note that if your server is down when we go to grade it, your group will receive a **10% deduction** on the project. If your server is having issues with staying available (such as those caused by MySQL connection errors), it is your group's responsibility to keep it running.
 
+*Please note that the maximum grade for PA3, including extra credit, will be 100%. The extra credit will benefit your grade if you lost points elsewhere on the project.*
+
 Your team's ports for pa3 should be your ports from pa2+200. You **should not** use your databased from either pa1 or pa2. Instead, use the database `group##pa3`.
