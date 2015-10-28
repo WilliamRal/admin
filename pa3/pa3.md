@@ -780,16 +780,17 @@ App.PicController = Ember.Controller.extend({
 
   actions: {
     commentSubmit: function(username, message) {
+      var picid = this.get('model').get('id');
+      var store = this.store;
       this.get('usernameValidator').validateUsername(username)
       .then(function(username) {
         $('#usernameInputError #error').remove();
-        var comment = this.store.createRecord('comment', {
+        var comment = store.createRecord('comment', {
           message: message,
-          username: username,
+          username: username.get('id'),
           date: moment().format("YYYY-MM-DDTHH:mm:ss"),
         });
-        var picid = this.get('model').get('id');
-        var pic = this.store.findRecord('pic', picid)
+        var pic = store.findRecord('pic', picid)
           .then(function (pic) {
             var picurl = pic.get('picurl');
             comment.set('pic', pic);
