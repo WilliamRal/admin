@@ -191,7 +191,7 @@ search query.
 
 ## Extra Credit
 
-Extra credit is given to the groups that can add one or more of the following features to their websites. There is a 2% bonus for each of the features.
+Extra credit is given to the groups that can add one or more of the following features to their websites. There is a 2% bonus for each of the features. As in the previous projects, extra credit will only go towards missed points on the project and not towards your overall course grade.
 
 * Implementing phrase queries.  This requires modifying the inverted index so that it maintains position information.
 * Updating the index file in place: Upon modifying a caption, the user should be able to update the index file with the new caption, without reindexing the entire caption set.
