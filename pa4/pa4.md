@@ -152,7 +152,7 @@ Please create a new web page `/search` to be your search homepage.
 
 For the PA4 website, use the same port numbers that you used for PA1. You might have to kill the server running for PA1 for this to work.
 
-For creating the PA4 search homepage, copy over the code from PA2 the same way you copied over code from PA1 to PA2. Follow the instructions from PA2 to make sure you change port numbers correctly. Also, be careful not to push code to your PA2 github repo. You'll only be using the Klein/Smarty/Flask skeleton code for this project and won't use much of the code from PA2, but you don't have to delete anything, just add the new search page.
+For creating the PA4 search homepage, copy over the code from PA3 the same way you copied over code from PA1 to PA2. Also, be careful not to push code to your PA3 github repo. You'll only be using the Klein/Smarty/Flask skeleton code for this project and won't use much of the code from PA3, but you don't have to delete anything, just add the new search page.
 
 In this project, you can assume anyone who is in `/search` can use your search engine.
 
