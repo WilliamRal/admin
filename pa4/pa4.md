@@ -68,7 +68,7 @@ Figure 1: Framework of the system
 The input of Indexer is the captions file which you download from images and search.xml, 
 and the output is the inverted index file. The indexer would only be run once to generate the inverted index. 
 
-NOTE: When creating your index you should treat capital and lowercase letters as the same (case-insensitive). You should also only include alphabetical words in your index and ignore any other symbols.   
+NOTE: When creating your index you should treat capital and lowercase letters as the same (case-insensitive). You should also only include alphanumeric words in your index and ignore any other symbols.   
 
 **`IndexServer`**: The IndexServer loads an inverted index from disk and uses it to process 
 search queries. When the IndexServer is run, it will load the inverted index file into memory 
