@@ -173,14 +173,14 @@ This set of result pages will become the seed set.
 
 * Grow the seed set into base set by including pages that are pointed to, or that point to, a page in the seed set. 
 Now calculate hub and authority values iteratively. After every iteration of the algorithm, 
-renormalize all values so that they sum to 1.
+normalize hub and authority scores so that the sum of the squares of the hub scores is equal to 1 and the sum of the squares of the authority scores is equal to 1.
 
 * You should implement two different stopping criteria: stop after K iterations, and stop after every node changes 
 no more than X  (|current_round_value - previous_round_value| / previous_round_value). The values X and K should be command-line arguments of your tool that we can change.
 
 * The running time of computing hub and authority scores should be about 10 minutes. If your program is taking much longer than this, you likely need to optimize your code.
 
-* Please check [Here](https://github.com/EECS485-Fall2014/admin/blob/master/pa5/hits_supplement.md) for more details.
+* Please check [Here](https://github.com/EECS485-Fall2015/staff/blob/master/pa5/hits_supplement.md) for more details.
 
 ### Result Output
 
@@ -193,7 +193,7 @@ followed by hub and authority values you have computed for that page (delimited 
     ....
 
 Your source code should be compiled by invoking make in the pa5_secretkey/hits directory 
-(you can use Makefile to make this job easier). After the compile is finished, your program 
+(use a Makefile). After the compile is finished, your program 
 should be invoked by a command-line tool called eecs485pa5h. If you are writing in C or C++, 
 this tool can simply be your binary. If you are writing in Java, this tool should be 
 a bash script that invokes the Java virtual machine.
@@ -206,7 +206,7 @@ For example:
 
    `eecs485pa5h 100 -k 10 “iPhone Microsoft” hits.net hits.inv hitsOutput`
 
-It should yield a HITS computation over the hits.net graph and corresponding inverted index in hits.inv. It will use a h value of 100 and will stop after 10 iterations (h value was the value to obtain most relevant top-h results). It will write the results to a file called hitsOutput.
+It should yield a HITS computation over the hits.net graph and corresponding inverted index in hits.inv. It will use an h value of 100 and will stop after 10 iterations (h value was the value to obtain most relevant top-h results). It will write the results to a file called hitsOutput.
 
 We could also use this command line:
 
@@ -217,7 +217,7 @@ It will use a different h value, will use a percent-change convergence criterion
 ## Folder Structure
 * You should have 2 folders under your pa5_secretkey repo: pagerank/ and hits/
 * There should be 1 makefile under each folder, 2 makefiles in total.
-* You don't need to upload the graph file or inverted index file to your repo
+* You don't need to upload the graph files or inverted index files to your repo
 
 ## Sample Answers
 Command: ```./eecs485pa5p 0.85 -k 10 small.net pagerank0```
@@ -249,13 +249,13 @@ Sample Answer:
 ## Grading
 
 * We will check your pa5_secretkey/pagerank and pa5_secretkey/hits directory for your command-line tool. 
-* We will run it on graphs that may be different from the Wikipedia test graphs, and with different parameter settings. 
+* We will run it on graphs that may be different from the Wikipedia test graphs, and with different parameter settings than the ones in the sample. 
 * You will receive full points for a test case if the average distance for each node does not exceed 3% (|ours - yours| / ours).
 * You will receive 0 points for the test case if it exceeds 3%.
 * Make sure to keep the code compileable and executable without any problems. 
-* We will deduct some amount from your grade if you do not follow the above format guidelines.
+* We will deduct points if you do not follow all of the format guidelines.
 * We will be going into both your pagerank/ and hits/ folders and typing "make" to compile your code.
-* Make sure your executables (or for Java your bash script) are called "eecs485pa5p" (for PageRank) and "eecs485pa5h" (for HITS)!!!
+* Make sure your executables (or for Java, your bash script) are called "eecs485pa5p" (for PageRank) and "eecs485pa5h" (for HITS)!!!
 * We will deduct points if we cannot compile the code by typing make in your pagerank/ and hits/ folders.
 * For PageRank only, you won't receive credit if your runtime for 10 iteration on large.net exceeds 2 hours (it takes 4-15mins normally). There wil be no point deduction for running time under 2 hours.
 * We highly highly highly recommend you test on CAEN as we will be grading on CAEN.
@@ -263,11 +263,11 @@ Sample Answer:
 
 ## Dataset
 #### PageRank
-* [Small wiki graph (61K uncompressed) ](http://www-personal.umich.edu/~wangguan/eecs485/small.net)
-* [Large wiki graph (499M compressed)]( http://www-personal.umich.edu/~wangguan/eecs485/large.net.tar.gz)
+* [Small wiki graph (61K uncompressed) ](https://drive.google.com/open?id=0Bw_xoHXcwyEIZ1BxLWs4cms0cDQ)
+* [Large wiki graph (499M compressed)]( https://drive.google.com/open?id=0Bw_xoHXcwyEIdzdEV0xXalY1NmM)
 
 #### HITS
 
-* [Medium wiki graph (3M uncompressed)](http://www-personal.umich.edu/~wangguan/eecs485/hits.net)
-* [Inverted Index for the graph (15M compressed) ](http://www-personal.umich.edu/~wangguan/eecs485/hits_invindex.tar.gz)
+* [Medium wiki graph (3M uncompressed)](https://drive.google.com/open?id=0Bw_xoHXcwyEIMWloVzdWTURDLTQ)
+* [Inverted Index for the graph (15M compressed) ](https://drive.google.com/open?id=0Bw_xoHXcwyEIcndDazk4dmM0Yms)
 
