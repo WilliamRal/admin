@@ -7,7 +7,7 @@ In this assignment you will compute PageRank and HITS values for a portion of th
 You don't need Apache for this project, and the heavy computational load of this PA will place a 
 strain on the eecs485 machines.
 
-![Figure 1. A part of graph we will use](https://github.com/EECS485-Fall2015/staff/blob/master/pa5/pa5_graph.png)
+![Figure 1. A part of graph we will use](https://github.com/EECS485-Fall2015/admin/blob/master/pa5/pa5_graph.png)
 
 ## PageRank
 
@@ -180,7 +180,7 @@ no more than X  (|current_round_value - previous_round_value| / previous_round_v
 
 * The running time of computing hub and authority scores should be about 10 minutes. If your program is taking much longer than this, you likely need to optimize your code.
 
-* Please check [Here](https://github.com/EECS485-Fall2015/staff/blob/master/pa5/hits_supplement.md) for more details.
+* Please check [Here](https://github.com/EECS485-Fall2015/admin/blob/master/pa5/hits_supplement.md) for more details.
 
 ### Result Output
 
