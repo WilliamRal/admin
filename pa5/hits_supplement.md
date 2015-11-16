@@ -11,7 +11,7 @@ Also add everything in Seed Set to the Base Set.
 
 **There are two subtleties here:**
 
-* When computing the Seed set, you should limit yourself to n items, where n is provided by command line parameter.
+* When computing the Seed set, you should limit yourself to h items, where h is provided by command line parameter.
 
 * You may find that some queries have items in the Seed set that are much more popular than others. 
 As a result, the contents of the Base Set can be quite lopsided. 
