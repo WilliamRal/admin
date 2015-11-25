@@ -1,6 +1,8 @@
 # Assignment 6: The Next Great Search Engine
 ### Due Tuesday, Dec 8, 2015, at 11:59 PM
 
+There are no late days for this assignment.
+
 In this assignment you will build an integrated Web search engine that has several features:
 * Ranking based on both tf-idf and PageRank scoring
 * Indexing implemented with MapReduce so it can scale to very large corpus sizes
